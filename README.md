@@ -1,3 +1,9 @@
+Testing something...
+
+--------------------------------------------------------------
+
+The original code belongs to Kaya Oğuz.
+
 # tartarus-web
 A Javascript version of Tartarus so that humans can experience it as machines do... 
 
