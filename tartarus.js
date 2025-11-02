@@ -59,6 +59,7 @@ var iy = [0, 0, 100, 200, 200, 200, 100, 0];
 var divInf;
 var divMsg;
 var numMoves = 80;
+var i;
 
 
 
