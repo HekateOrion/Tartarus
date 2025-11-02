@@ -252,4 +252,5 @@ init : function() {
 }
 
 window.startGame = startGame;
+window.moveAgent = moveAgent;
 
