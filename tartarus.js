@@ -66,7 +66,7 @@ var player_result = {
     position: { x: -1, y: -1 },
     score: -1
 }
-
+/*
 async function saveToSupabase() {
     try {
       const { data, error } = await supabase.from("game_results_score_position").insert([player_result]);
@@ -76,7 +76,7 @@ async function saveToSupabase() {
       console.error("Error saving data:", err.message);
     }
 }
-
+*/
 
 
 
@@ -230,7 +230,7 @@ function moveAgent(d) {
         player_result.position.y = posy;
         player_result.score = f;
 
-        saveToSupabase(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //saveToSupabase(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     else if(numMoves == 15) {
         divMsg.style.color = "red";
