@@ -82,8 +82,8 @@ async function saveToSupabase() {
 
 
 function rotateCCW(v, d) {
-    x = Math.round(v[0] * Math.cos(Math.PI / d) - v[1] * Math.sin(Math.PI / d));
-    y = Math.round(v[0] * Math.sin(Math.PI / d) + v[1] * Math.cos(Math.PI / d));
+    let x = Math.round(v[0] * Math.cos(Math.PI / d) - v[1] * Math.sin(Math.PI / d));
+    let y = Math.round(v[0] * Math.sin(Math.PI / d) + v[1] * Math.cos(Math.PI / d));
     return [x, y];
 }
 
@@ -102,7 +102,7 @@ function startGame() {
     // generate 6 random boxes in the inner 4x4
     // the index should be between 1 and 4 (both inclusive)
 
-    numboxes = 0;
+    let numboxes = 0;
     while(numboxes < 6) {
         // get a random pos_x and pos_y
         posx = Math.floor(Math.random() * 4) + 1; 
@@ -132,10 +132,10 @@ function startGame() {
 
 function drawArea() {
     // draw bulldozer's view
-    temp = curDir;
+    let temp = curDir;
     for(let i=0;i<8;i++) {
-        cx = posx + temp[0];
-        cy = posy + temp[1];
+        let cx = posx + temp[0];
+        let cy = posy + temp[1];
         if (cx < 0 || cy < 0 || cx > 5 || cy > 5) {
             gameArea.context.drawImage(tWall, ix[i], iy[i], 100, 100);
         } else if (map[cx][cy] == 1) {
@@ -151,7 +151,7 @@ function drawArea() {
 
     //return;
     // debug
-    myStr = "<pre>DEBUG!<br /> Direction:" + curDir + "<br /> Position:" + posx + "," + posy + "<br />";
+    let myStr = "<pre>DEBUG!<br /> Direction:" + curDir + "<br /> Position:" + posx + "," + posy + "<br />";
     for(let i=5;i>=0;i--) {
         for(let j=5;j>=0;j--) {
             if (i == posx && j == posy) {
@@ -176,8 +176,8 @@ function moveAgent(d) {
             drawArea();
             break;
         case "forward":
-            tx = posx + curDir[0];
-            ty = posy + curDir[1];
+            let tx = posx + curDir[0];
+            let ty = posy + curDir[1];
             if (tx < 0 || ty < 0 || tx > 5 || ty > 5) {
                 // walls! 
                 // do nothing
@@ -189,8 +189,8 @@ function moveAgent(d) {
                 drawArea();
             } else {
                 // check if there is another box behind this box
-                qx = tx + curDir[0];
-                qy = ty + curDir[1];
+                let qx = tx + curDir[0];
+                let qy = ty + curDir[1];
                 if (qx < 0 || qy < 0 || qx > 5 || qy > 5) {
                     // do nothing, walls.
                 }
@@ -217,7 +217,7 @@ function moveAgent(d) {
         document.getElementById("b3").disabled = true;
         
         // calculate SCORE... 
-        f = 0;
+        let f = 0;
         for (let i=0;i<6;i++) {
             for(let j=0;j<6;j++) {
                 if(map[i][j] == 1) {
