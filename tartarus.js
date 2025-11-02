@@ -32,20 +32,7 @@ const finalGameData = {
 */
 // ---------------------------
 
-var player_result = {
-    position: { x: -1, y: -1 },
-    score: -1
-}
 
-async function saveToSupabase() {
-    try {
-      const { data, error } = await supabase.from("game_results_score_position").insert([player_result]);
-      if (error) throw error;
-      console.log("Game data saved:", data);
-    } catch (err) {
-      console.error("Error saving data:", err.message);
-    }
-}
 
 
 var tCell = new Image(); // tartarus cell
@@ -70,6 +57,25 @@ var iy = [0, 0, 100, 200, 200, 200, 100, 0];
 var divInf;
 var divMsg;
 var numMoves = 80;
+
+
+
+var player_result = {
+    position: { x: -1, y: -1 },
+    score: -1
+}
+
+async function saveToSupabase() {
+    try {
+      const { data, error } = await supabase.from("game_results_score_position").insert([player_result]);
+      if (error) throw error;
+      console.log("Game data saved:", data);
+    } catch (err) {
+      console.error("Error saving data:", err.message);
+    }
+}
+
+
 
 
 function rotateCCW(v, d) {
