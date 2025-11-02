@@ -1,3 +1,53 @@
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://vrdwnlertivktrgpvdnd.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZHdubGVydGl2a3RyZ3B2ZG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5OTM4NTgsImV4cCI6MjA3NzU2OTg1OH0.DnreW6g4QQ663fVK2NmQT4r7a8Pxy0_hOFDggJjhfVM'//process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+// MechanicalTurk entegrasyonu için ------------ şimdilik kullanılmıyor 
+/*
+function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name);
+}
+
+const workerId = getParam("workerId");
+const assignmentId = getParam("assignmentId");
+const hitId = getParam("hitId");
+
+const finalGameData = {
+    worker_id: workerId,
+    assignment_id: assignmentId,
+    hit_id: hitId,
+    score: 1400,
+    player_position: { x: 2, y: 5 },
+    board: [
+      [0, 1, 0, 0, 2, 0],
+      [0, 0, 3, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0],
+      [0, 2, 0, 0, 3, 0],
+      [0, 0, 0, 0, 0, 0],
+      [1, 0, 0, 2, 0, 0],
+    ],
+};
+*/
+// ---------------------------
+
+var player_result = {
+    position: { x: -1, y: -1 },
+    score: -1
+}
+
+async function saveToSupabase() {
+    try {
+      const { data, error } = await supabase.from("game_results_score_position").insert([player_result]);
+      if (error) throw error;
+      console.log("Game data saved:", data);
+    } catch (err) {
+      console.error("Error saving data:", err.message);
+    }
+}
+
+
 var tCell = new Image(); // tartarus cell
 var tBox = new Image(); // a box
 var tAgent = new Image(); // bulldozer
@@ -150,11 +200,14 @@ function moveAgent(d) {
             break;
     }
     numMoves--;
+
+    // oyun bitti mi diye kontrol et !!!!!!!!!! ----------------------------
     if(numMoves == 0) {
         document.getElementById("b1").disabled = true;
         document.getElementById("b2").disabled = true;
         document.getElementById("b3").disabled = true;
-        // calculate score... 
+        
+        // calculate SCORE... 
         f = 0;
         for (i=0;i<6;i++) {
             for(j=0;j<6;j++) {
@@ -164,7 +217,12 @@ function moveAgent(d) {
                 }
             }
         }
-        divMsg.innerHTML = "You have no moves left. Your score is: " + f; 
+        divMsg.innerHTML = "You have no moves left. Your score is: " + f;
+        player_result.position.x = posx;
+        player_result.position.y = posy;
+        player_result.score = f;
+
+        saveToSupabase(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
     else if(numMoves == 15) {
         divMsg.style.color = "red";
