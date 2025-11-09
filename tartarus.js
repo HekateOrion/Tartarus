@@ -65,7 +65,16 @@ var numMoves = 80;
 
 const player_result = {
     position: { x: -1, y: -1 },
-    score: -1
+    score: -1,
+    direction: [0, 0],
+    board: [
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+    ]
 };
 
 async function saveToSupabase() {
@@ -232,6 +241,8 @@ function moveAgent(d) {
         player_result.position.x = posx;
         player_result.position.y = posy;
         player_result.score = f;
+        player_result.direction = curDir;
+        player_result.board = map;
         
 
         saveToSupabase(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
