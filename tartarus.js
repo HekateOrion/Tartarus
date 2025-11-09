@@ -67,14 +67,7 @@ const player_result = {
     position: { x: -1, y: -1 },
     score: -1,
     direction: [0, 0],
-    board: [
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-    ]
+    board: new Array()
 };
 
 async function saveToSupabase() {
