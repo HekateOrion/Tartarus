@@ -51,6 +51,7 @@ tAgent.src = "agent.png";
 tWall.src = "wall.png";
 
 var map = new Array();
+var every_step = new Array();
 var dir = [[1, 0], [-1, 0], [0, 1], [0, -1]];
 var curDir; 
 var ix = [100, 0, 0, 0, 100, 200, 200, 200];
@@ -211,6 +212,7 @@ function moveAgent(d) {
             break;
     }
     numMoves--;
+    every_step.push(map);
 
     // oyun bitti mi diye kontrol et !!!!!!!!!! ----------------------------
     if(numMoves == 0) {
@@ -235,7 +237,7 @@ function moveAgent(d) {
         player_result.position.y = posy;
         player_result.score = f;
         player_result.direction = curDir;
-        player_result.board = map;
+        player_result.board = every_step;
         
 
         saveToSupabase(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
