@@ -227,6 +227,8 @@ function moveAgent(d) {
     console.log(a);
     
     every_step.push(a);
+
+    // buraya action ekle !!!!!!!!!!!!!
     
     console.log(every_step);
 
