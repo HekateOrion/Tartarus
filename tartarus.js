@@ -212,8 +212,22 @@ function moveAgent(d) {
             break;
     }
     numMoves--;
+    
     console.log(map);
-    every_step.push(map);
+    
+    let a = new Array();
+
+    for(let i=0;i<6;i++) {
+        a[i] = new Array();
+        for(let j=0;j<6;j++) {
+            a[i][j] = map[i][j];
+        }
+    }
+
+    console.log(a);
+    
+    every_step.push(a);
+    
     console.log(every_step);
 
     // oyun bitti mi diye kontrol et !!!!!!!!!! ----------------------------
@@ -239,10 +253,10 @@ function moveAgent(d) {
         player_result.position.y = posy;
         player_result.score = f;
         player_result.direction = curDir;
-        player_result.board = every_step;
+        player_result.board = every_step;  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         
 
-        saveToSupabase(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        saveToSupabase(); // !!!!!!!!!!
     }
     else if(numMoves == 15) {
         divMsg.style.color = "red";
