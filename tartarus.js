@@ -213,7 +213,6 @@ function moveAgent(d) {
     }
     numMoves--;
     
-    console.log(map);
     
     let a = new Array();
 
@@ -224,11 +223,13 @@ function moveAgent(d) {
         }
     }
 
-    console.log(a);
-    
-    every_step.push(a);
+    let step = new Array();
+    step[0] = a;  // current board state
+    step[1] = d;  // current action
 
-    // buraya action ekle !!!!!!!!!!!!!
+    console.log(step);
+    
+    every_step.push(step);    
     
     console.log(every_step);
 
